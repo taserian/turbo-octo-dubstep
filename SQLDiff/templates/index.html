@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Diff</title>
+</head>
+<body>
+<form>
+From: <select name="regionFrom">
+    {% for reg in regions %}
+    <option value="{{ reg['name'] }}">{{ reg['region'] }}</option>
+    {% endfor %}
+    </select>
+<br />
+To: <select name="regionTo">
+    {% for reg in regions %}
+    <option value="{{ reg['name'] }}">{{ reg['region'] }}</option>
+    {% endfor %}
+    </select>
+<br />
+Search for objects with: <input type="text" name="search_pattern">
+<br />
+<input type="submit" name="Compare"><br />
+
+{% if from_region %}
+    ONLY IN {{ from_region }} - {{ len_from }}<br />
+    {% for i in from_only %}
+        {{ i }}<br />
+    {% endfor %}
+{% endif %}
+<br />
+{% if to_region %}
+    ONLY IN {{ to_region }} - {{ len_to }}<br />
+    {% for i in to_only %}
+        {{ i }}<br />
+    {% endfor %}
+{% endif %}
+
+</form>
+</body>
+</html>
